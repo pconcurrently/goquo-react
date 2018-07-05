@@ -1,0 +1,109 @@
+html {
+    font-family: Roboto, 'Times New Roman', Times, serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+// General classes
+.flex {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+// Minxins
+@mixin display-grid {
+  display: -ms-grid;
+  display: grid;
+}
+
+// Buttons
+.btn {
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border: solid 1px transparent;
+  color: #333;
+}
+.btn--basic {
+  border-color: #ccc;
+  background-color: #fff;
+
+  &:hover, &:active {
+    border-color: #adadad;
+    background-color: #e6e6e6;
+  }
+}
+.btn--primary {
+  border-color: #25334a;
+  background-color: #32415a;
+  color: #fff;
+
+  &:hover, &:active {
+    border-color: #0f1b30;
+    background-color: #192841;
+    color: #e5e5e5;
+  }
+}
+.btn--block {
+  width: 100%;
+}
+
+// Inputs
+.input {
+  padding: 6px 12px;
+  border: solid 1px #ddd;
+  border-radius: 2px;
+  display: inline-block;
+  &:focus {
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+  }
+}
+.input--block {
+  width: 100%;
+}
+.input--error {
+  border-color: $error-color;
+
+  &:focus {
+    border-color: transparent;
+  }
+}
+
+// Forms
+.form--block {
+  margin: 18px 0;
+}
+.form--label {
+  display: inline-block;
+  margin-bottom: 9px;
+}
+.form--link {
+  color: $text_active;
+  text-decoration: none;
+
+  &:hover, &:active {
+    color: $link_active;
+  }
+}
+.form--error-message {
+  color: $error-color;
+}
+
+// Nav
+.nav {
+  height: 60px;
+  width: 100vw;
+  background-color: #ddd;
+}
+.nav--primary {
+  background-color: $background_main;
+}
+

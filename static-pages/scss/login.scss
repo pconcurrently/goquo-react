@@ -1,0 +1,39 @@
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: $background_main;
+    @include display-grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.login-form {
+    @extend .flex;
+    background-color: #fff;
+
+    .login-form__intro {
+        display: none;
+        background: $form_background;
+        color: #fff;
+        padding: 40px;
+        max-width: 400px;
+        text-align: center;
+        @media #{$break-sm} {
+            display: block;
+            @include display-grid;
+            align-items: self-start;
+            justify-items: center;
+            width: 50%;
+        }
+    }
+    .login-form__form {
+        background-color: inherit;
+        color: $text_main;
+        padding: 40px;
+        max-width: 400px;
+        width: 100%;
+        @media #{$break-sm} {
+            width: 50%;
+        }
+    }
+}

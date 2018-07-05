@@ -1,4 +1,32 @@
-extends layout
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title GoQuo
+    meta(name='description', content='GoQuo')
+    meta(name='csrf-token', content=_csrf)
+    link(rel="stylesheet", href="../css/main.css")
 
-block content
-    p This is login
+  body
+    .login-container
+        .login-form
+            .login-form__intro
+                .container
+                    h2 GoQuo
+                    p Empowering real time ancillary revenue
+            .login-form__form
+                h4 Sign in to Your Account
+                .form--block
+                    label.form--label Email:
+                    input.input.input--block(placeholder="Enter your email address")
+                    p.form--error-message
+                .form--block
+                    label.form--label Password:
+                    input.input.input--block.input--error(placeholder="Enter your password")
+                    p.form--error-message
+                .form--block
+                    a.form--link(href="#") Reset your password
+                button.btn.btn--primary.btn--block Sign In
+
