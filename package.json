@@ -7,7 +7,9 @@
     "copy-assets": "node copyStaticAssets.js",
     "watch": "webpack --watch",
     "build": "webpack --config webpack.prod.js",
-    "build-static": "pug static-pages/pug --out static-pages/dist/html --pretty && sass static-pages/scss/main.scss:static-pages/dist/css/main.css && npm run copy-assets",
+    "build-static": "npm run build-html && npm run build-css && npm run copy-assets",
+    "build-html": "pug static-pages/pug --out static-pages/dist/html --pretty",
+    "build-css": "sass static-pages/scss/main.scss:static-pages/dist/css/main.css",
     "build-html-watch": "pug --watch static-pages/pug --out static-pages/dist/html --pretty",
     "build-css-watch": "sass --watch static-pages/scss/main.scss:static-pages/dist/css/main.css"
   },
