@@ -1,0 +1,32 @@
+// Buttons
+.btn {
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border: solid 1px transparent;
+  color: #333;
+}
+.btn--basic {
+  border-color: #ccc;
+  background-color: #fff;
+
+  &:hover, &:active {
+    border-color: #adadad;
+    background-color: #e6e6e6;
+  }
+}
+.btn--primary {
+  border-color: #25334a;
+  background-color: #32415a;
+  color: #fff;
+
+  &:hover, &:active {
+    border-color: #0f1b30;
+    background-color: #192841;
+    color: #e5e5e5;
+  }
+}
+.btn--block {
+  width: 100%;
+}

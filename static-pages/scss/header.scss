@@ -1,0 +1,28 @@
+.nav {
+  height: 60px;
+  width: 100vw;
+  background-color: #ddd;
+}
+.nav--primary {
+  background-color: $background_main;
+  font-size: 12px;
+  padding: 21px 15px;
+  color: #fff;
+
+  @media #{$break_sm} {
+    font-size: 16px;
+    padding: 22px 15px;
+  }
+}
+.nav--menu {
+  cursor: pointer;
+
+  .nav--menu__title {
+    margin-left: 12px;
+    font-family: Roboto;
+  }
+}
+.nav--user-menu {
+  float: right;
+  cursor: pointer;
+}

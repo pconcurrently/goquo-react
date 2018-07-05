@@ -1,0 +1,29 @@
+.sidebar {
+    overflow: hidden;
+    width: 200px;
+    max-width: 200px;
+    height: calc(100vh - 60px);
+    background-color: $background_main;
+    border-top: solid 1px $text_active;
+    color: #fff;
+    padding: 15px;
+    font-size: 16px;
+    transition: max-width .3s ease-in-out;
+
+    .sidebar__container {
+        width: 200px;
+    }
+
+    &.collapsed {
+        max-width: 50px;
+
+        .sidebar__item__text {
+            display: none;
+        }
+    }
+}
+.sidebar__items {
+    .sidebar__item {
+        cursor: pointer;
+    }
+}

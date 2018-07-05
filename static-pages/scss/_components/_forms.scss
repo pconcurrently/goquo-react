@@ -1,0 +1,19 @@
+// Forms
+.form--block {
+  margin: 18px 0;
+}
+.form--label {
+  display: inline-block;
+  margin-bottom: 9px;
+}
+.form--link {
+  color: $text_active;
+  text-decoration: none;
+
+  &:hover, &:active {
+    color: $link_active;
+  }
+}
+.form--error-message {
+  color: $error-color;
+}
