@@ -1,8 +1,17 @@
+// Local vars
+$sidebar_width: 200px;
+$sidebar_max_width: 200px;
+$sidebar_collapsed_width: 50px;
+
 .sidebar {
     overflow: hidden;
-    width: 200px;
-    max-width: 200px;
-    height: calc(100vh - 60px);
+    width: $sidebar_width;
+    max-width: 100vw;
+    position: absolute;
+    left: 0;
+    top: $header_height;
+    
+    height: calc(100vh - #{$header_height});
     background-color: $background_main;
     border-top: solid 1px $text_active;
     color: #fff;
@@ -10,12 +19,21 @@
     font-size: 16px;
     transition: max-width .3s ease-in-out;
 
+    @media #{$break_sm} {
+        max-width: $sidebar_max_width;
+    }
+
     .sidebar__container {
-        width: 200px;
+        width: $sidebar_width;
+        max-width: 100vw;
+
+        @media #{$break_sm} {
+            max-width: $sidebar_max_width;
+        }
     }
 
     &.collapsed {
-        max-width: 50px;
+        max-width: $sidebar_collapsed_width;
 
         .sidebar__item__text {
             display: none;
@@ -25,5 +43,13 @@
 .sidebar__items {
     .sidebar__item {
         cursor: pointer;
+        &:not(:first-child) {
+            margin-top: 12px;
+        }
+
+        .sidebar__item__link {
+            color: #fff;
+            text-decoration: none;
+        }
     }
 }

@@ -7,26 +7,73 @@
   border: solid 1px transparent;
   color: #333;
 }
-.btn--basic {
-  border-color: #ccc;
-  background-color: #fff;
-
-  &:hover, &:active {
-    border-color: #adadad;
-    background-color: #e6e6e6;
-  }
-}
-.btn--primary {
-  border-color: #25334a;
-  background-color: #32415a;
-  color: #fff;
-
-  &:hover, &:active {
-    border-color: #0f1b30;
-    background-color: #192841;
-    color: #e5e5e5;
-  }
+.btn--sm {
+  font-size: 12px;
 }
 .btn--block {
   width: 100%;
+}
+.btn--basic {
+  background-color: #ccc;
+  border-color: #fff;
+
+  &:hover, &:active {
+    background-color: #adadad;
+    border-color: #e6e6e6;
+  }
+}
+.btn--primary {
+  background-color: #25334a;
+  border-color: #32415a;
+  color: #fff;
+
+  &:hover, &:active {
+    background-color: #0f1b30;
+    border-color: #192841;
+    color: #e5e5e5;
+  }
+}
+.btn--info {
+  background-color: #007bff;
+  border-color: #0069d8;
+  color: #fff;
+
+  &:hover, &:active {
+    background-color: #025dbf;
+    border-color: #0251a5;
+    color: #e5e5e5;
+  }
+}
+.btn--info-2 {
+  background-color: #17a2b8;
+  border-color: #118799;
+  color: #fff;
+
+  &:hover, &:active {
+    background-color: #077a8b;
+    border-color: #025663;
+    color: #e5e5e5;
+  }
+}
+.btn--danger {
+  background-color: #e2b41e;
+  border-color: #cfa51b;
+  color: #fff;
+
+  &:hover, &:active {
+    background-color: #bd9719;
+    border-color: #ad8a18;
+    color: #e5e5e5;
+  }
+}
+.btn--transparent {
+  background-color: transparent;
+  border-color: $text_active;
+  color: $text_active;
+
+  &:hover, &:active {
+    background-color: $text_active;
+    border-color: $text_active;
+    color: #fff;
+  }
 }

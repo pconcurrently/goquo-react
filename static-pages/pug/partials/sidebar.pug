@@ -2,5 +2,14 @@ aside.sidebar#sidebar
     .sidebar__container
         ul.sidebar__items
             li.sidebar__item
-                span.fa.fa-home &nbsp
-                span.sidebar__item__text Dashboard
+                a.sidebar__item__link(href="./")
+                    span.fa.fa-home &nbsp
+                    span.sidebar__item__text Dashboard
+            li.sidebar__item
+                a.sidebar__item__link(href="./users.html")
+                    span.fa.fa-user-circle &nbsp
+                    span.sidebar__item__text Users
+            li.sidebar__item
+                a.sidebar__item__link(href="./suppliers.html")
+                    span.fa.fa-users &nbsp
+                    span.sidebar__item__text Suppliers

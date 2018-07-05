@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    .container 
+        .header
+            h4 Suppliers
+            p Viewing all suppliers' detail
+        .body
+            table.table--cross(style='width:100%')
+                tr
+                    th Supplier Code 
+                    th Supplier Name 
+                    th Status  
+                tr
+                    td DOTW 
+                    td DOTW v3
+                    td 
+                        .onoffswitch
+                            input#sw1.onoffswitch-checkbox(type='checkbox', name='sw1')   
+                            label.onoffswitch-label(for='sw1')
+                                span.onoffswitch-inner      
+                                span.onoffswitch-switch
+                tr
+                    td DOTW 
+                    td DOTW v3
+                    td 
+                        .onoffswitch
+                            input#sw2.onoffswitch-checkbox(type='checkbox', name='sw2')   
+                            label.onoffswitch-label(for='sw2')
+                                span.onoffswitch-inner      
+                                span.onoffswitch-switch 
+            .table-info
+                p Showing 2 of 2 entries

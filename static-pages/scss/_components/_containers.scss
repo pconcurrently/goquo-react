@@ -1,0 +1,13 @@
+.content-container {
+    margin-left: $sidebar_max_width;
+    transition: margin .3s ease-in-out;
+    min-height: calc(100vh - #{$header_height});
+    background-color: #ddd;
+
+    &.extend {
+        margin-left: $sidebar_collapsed_width;
+    }
+}
+.container {
+    padding: 15px;
+}

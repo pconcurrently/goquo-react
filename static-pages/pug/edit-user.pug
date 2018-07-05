@@ -1,0 +1,55 @@
+extends layout
+
+block content
+    .container
+        .header
+            h4 User: admin
+            h4 Email: admin@goquo.com
+            button.btn.btn--sm.btn--info 
+                span.fa.fa-plus
+                | &nbsp Add Supplier
+            button.btn.btn--sm.btn--info-2 
+                span.fa.fa-cog
+                | &nbsp Set Markup
+            .container--info
+                .row
+                    label Please 
+        .body
+            table.table--cross(style='width:100%')
+                tr
+                    th Supplier Code 
+                    th Supplier Name 
+                    th Markup 
+                    th Status 
+                tr
+                    td DOTW 
+                    td DOTW v3
+                    td 
+                        button.btn.btn--info-2
+                            span.fa.fa-save
+                            span &nbsp Edit &nbsp
+                            span.fa.fa-chevron-down
+                    td 
+                        .onoffswitch
+                            input#sw1.onoffswitch-checkbox(type='checkbox', name='sw1', checked="")   
+                            label.onoffswitch-label(for='sw1')
+                                span.onoffswitch-inner      
+                                span.onoffswitch-switch
+                tr
+                    td DOTW 
+                    td DOTW v3
+                    td 
+                        button.btn.btn--info-2
+                            span.fa.fa-save
+                            span &nbsp Edit &nbsp
+                            span.fa.fa-chevron-down
+                    td 
+                        .onoffswitch
+                            input#sw2.onoffswitch-checkbox(type='checkbox', name='sw2')   
+                            label.onoffswitch-label(for='sw2')
+                                span.onoffswitch-inner      
+                                span.onoffswitch-switch
+            .table-info
+                p Showing 2 of 2 entries
+
+        

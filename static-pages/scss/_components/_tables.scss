@@ -1,0 +1,22 @@
+.table--cross {
+    text-align: left;
+    border-collapse: collapse;
+
+    th {
+        background-color: #dee2e6;
+        padding: 6px 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    tr {
+        background-color: #e9ecef;
+        border-bottom: solid 1px #fff;
+    }
+    td {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+.table-info {
+    font-size: 12px;
+}

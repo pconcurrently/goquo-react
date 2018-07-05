@@ -1,17 +1,24 @@
+// Local vars
+$header_height: 60px;
+$header_font_size: 16px;
+$header_font_size_mobile: 11px;
+$header_line_height: 1.4;
+
 .nav {
-  height: 60px;
-  width: 100vw;
+  height: $header_height;
+  width: 100%;
   background-color: #ddd;
 }
 .nav--primary {
   background-color: $background_main;
-  font-size: 12px;
-  padding: 21px 15px;
+  font-size: $header_font_size_mobile;
+  line-height: $header_line_height;
+  padding: calc(#{$header_height}/2 - #{$header_font_size_mobile}*#{$header_line_height}/2) 15px; // = (header_height - line_height * font_size) / 2
   color: #fff;
 
   @media #{$break_sm} {
-    font-size: 16px;
-    padding: 22px 15px;
+    font-size: $header_font_size;
+    padding: calc(#{$header_height}/2 - #{$header_font_size}*#{$header_line_height}/2) 15px; // = (header_height - line_height * font_size) / 2
   }
 }
 .nav--menu {

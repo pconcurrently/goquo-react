@@ -10,10 +10,12 @@ html(lang='en')
     link(rel="stylesheet", href="../css/main.css")
 
   body
-    include partials/header
-    include partials/sidebar
+    .wrapper
+      include partials/header
+      include partials/sidebar
 
-    block content
+      .content-container
+        block content
 
     script(src='../js/lib/jquery-3.1.1.min.js')
     script(src='../js/main.js')

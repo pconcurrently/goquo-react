@@ -4,6 +4,9 @@ html {
     font-weight: 500;
     line-height: 1.4;
 }
+.wrapper {
+  background-color: $background_main;
+}
 *, *:before, *:after {
   box-sizing: border-box;
 }
