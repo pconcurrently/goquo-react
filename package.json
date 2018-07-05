@@ -4,9 +4,12 @@
   "description": "Redux enabled boilerplate with React, ReactBootstrap, Babel and Webpack",
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
+    "copy-assets": "node copyStaticAssets.js",
     "watch": "webpack --watch",
     "build": "webpack --config webpack.prod.js",
-    "build-static": "pug static-pages/pug --out static-pages/dist/html --pretty && sass static-pages/scss/main.scss:static-pages/dist/css/main.css"
+    "build-static": "pug static-pages/pug --out static-pages/dist/html --pretty && sass static-pages/scss/main.scss:static-pages/dist/css/main.css && npm run copy-assets",
+    "build-html-watch": "pug --watch static-pages/pug --out static-pages/dist/html --pretty",
+    "build-css-watch": "sass --watch static-pages/scss/main.scss:static-pages/dist/css/main.css"
   },
   "keywords": [],
   "author": "hydrocarbons",
@@ -29,6 +32,7 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
+    "shelljs": "^0.8.2",
     "style-loader": "^0.20.2",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1",
