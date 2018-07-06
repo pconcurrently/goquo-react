@@ -1,0 +1,100 @@
+extends layout
+
+block content
+    .container
+        section.dashboard__section.overall-stats
+            .overall-stats__today-bookings
+                heading Today Bookings
+                small Wed, 04 Jul, 2018
+                h2 2
+            .overall-stats__this-week
+                heading This week
+                small Mon, 02 - Sun, 08 Jul, 2018
+                h2 32
+            .overall-stats__this-month
+                heading This month
+                small Jul, 2018
+                h2 32
+        section.dashboard__section.total-bookings
+            heading Total Bookings
+            small A bar chart for demonstrating bookings
+            .totalbookings__chart-container
+                .totalbookings__chart-container-1
+                    canvas#chart-1(height="300")
+                .totalbookings__chart-container-2
+                    canvas#chart-2(height="300")
+        section.dashboard__section.total-bookings
+            heading Last Booking
+            small Last booking by suppliers
+            .section-container.last-booking__table-container
+                table.table--cross
+                    thead
+                        tr
+                            th Supplier Code 
+                            th Date
+                    tbody
+                        tr
+                            td DOTW 
+                            td 28 Jule 2017
+                        tr
+                            td DOTW2
+                            td 26 Jule 2017
+                .table-addons
+                    .table-info
+                        p Showing 2 of 6 entries
+                    .table-paging-indicators
+                        span.prev.inactive Previous
+                        span.active 1
+                        span 2
+                        span 3
+                        span.next Next
+block script
+    script.
+        var poolColors = function (a) {
+            var pool = [];
+            for(i=0;i<a;i++){
+                pool.push(dynamicColors());
+            }
+            return pool;
+        }
+
+        var dynamicColors = function() {
+            var r = Math.floor(Math.random() * 255);
+            var g = Math.floor(Math.random() * 255);
+            var b = Math.floor(Math.random() * 255);
+            return "rgb(" + r + "," + g + "," + b + ", 0.4)";
+        }
+
+        var ctx1 = $("#chart-1");
+        var ctx2 = $("#chart-2");
+        var myBarChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ["Sup1", "Sup2", "Sup3", "Sup4", "Sup5", "Sup6"],
+                datasets: [{
+                    label: 'By Suppliers',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: poolColors(6),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+        var myBarChart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ["User1", "User2", "User3", "User4", "User5", "User6"],
+                datasets: [{
+                    label: 'By Users',
+                    data: [13, 8, 13, 15, 22, 5],
+                    backgroundColor: poolColors(6),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+

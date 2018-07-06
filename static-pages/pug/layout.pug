@@ -15,12 +15,13 @@ html(lang='en')
       include partials/header
       include partials/sidebar
 
-      .content-container.xloading
+      .content-container
         .block-content-wrapper
           block content
-        .loader-container.xloading
+        .loader-container
           +loader()
 
+    script(src='../js/lib/Chart.min.js')
     script(src='../js/lib/jquery-3.1.1.min.js')
     script(src='../js/main.js')
     block script

@@ -20,4 +20,40 @@
 }
 .table-info {
     font-size: 12px;
+    float: left;
+}
+.table-paging-indicators {
+    margin-top: 6px;
+    text-align: right;
+    > span {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-color: #ddd;
+        padding: 6px;
+        vertical-align: middle;
+        margin-left: 4px;
+        margin-bottom: 4px;
+        text-align: center;
+        cursor: pointer;
+        -webkit-transition: background-color .1s linear, color .1s linear;
+        -moz-transition: background-color .1s linear, color .1s linear;
+        -o-transition: background-color .1s linear, color .1s linear;
+        transition: background-color .1s linear, color .1s linear;
+
+        &.prev, &.next {
+            width: auto;
+            padding: 6px 12px;
+        }
+        &.inactive {
+            color: rgb(116, 115, 115);
+            cursor: default;
+        }
+        &:not(.inactive):hover,
+        &.active,
+        &:not(.inactive):active {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+    }
 }

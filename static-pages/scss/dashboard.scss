@@ -1,0 +1,99 @@
+section.dashboard__section {
+    &:not(:first-child) {
+        margin-top: 20px;
+    }
+
+    > .section-container {
+        background-color: #fff;
+        padding: 24px;
+        margin-top: 12px;
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .12);
+    }
+}
+.overall-stats {
+    display: block;
+    width: 100%;
+    @media #{$break_sm} {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex; 
+    }
+
+    > div {
+        width: 100%;
+        padding: 12px;
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .12);
+        background-color: #fff;
+        &:not(:first-child) {
+            margin-top: 12px;
+            margin-left: 0;
+        }
+
+        @media #{$break_sm} {
+            width: 33.33%;
+
+            &:not(:first-child) {
+                margin-left: 12px;
+                margin-top: 0;
+            }
+        }
+
+        > heading {
+            display: inline-block;
+           font-size: 14px;
+           font-weight: 700;
+           margin-bottom: 6px; 
+           text-transform: uppercase;
+
+           & + small {
+               display: block;
+           }
+        }
+    }
+}
+
+.total-bookings {
+    .totalbookings__chart-container {
+        display: block;
+        margin-top: 12px;
+
+        @media #{$break_md} {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+        }
+        > div {
+            width: 100%;
+            background-color: #fff;
+            padding: 12px;
+            box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .12);
+
+            &:not(:first-child) {
+                margin-left: 0;
+                margin-top: 12px;
+            }
+
+            @media #{$break_md} {
+                width: 50%;
+
+                &:not(:first-child) {
+                    margin-left: 12px;
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+
+    > heading {
+        font-size: 18px;
+        font-weight: 700;
+
+        & + small {
+            display: block;
+        }
+    }
+}
