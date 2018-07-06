@@ -1,0 +1,43 @@
+.container--info {
+    display: block;
+    align-items: baseline;
+    padding: 12px;
+    margin: 12px 0;
+    background-color: #d1e7ff;
+    font-size: 13px;
+
+    > * {
+        width: 100%;
+        text-align: left;
+        display: inline-block;
+
+        &:not(:first-child) {
+            margin-top: 4px;
+        }
+    }
+
+    @media #{$break_md} { 
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        > * {
+            text-align: center;
+        }
+
+        > label {
+            width: 35%;
+            text-align: left;
+        }
+
+        > input {
+            width: 40%;
+        }
+
+        >.button-containers {
+            width: 25%;
+        }
+
+    }
+}
