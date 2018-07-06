@@ -6,6 +6,11 @@
   font-size: 14px;
   border: solid 1px transparent;
   color: #333;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 .btn--sm {
   font-size: 12px;
