@@ -3395,6 +3395,10 @@ ul li {
   list-style: none;
 }
 
+.span-fa-text {
+  margin-left: 6px;
+}
+
 .flex, .login-form {
   display: -webkit-box;
   /* OLD - iOS 6-, Safari 3.1-6 */
@@ -3711,6 +3715,7 @@ ul li {
 .table--cross {
   text-align: left;
   border-collapse: collapse;
+  width: 100%;
 }
 .table--cross th {
   background-color: #dee2e6;

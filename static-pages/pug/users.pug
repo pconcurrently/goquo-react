@@ -6,24 +6,26 @@ block content
             h4 Users
             p Viewing all users' detail
         .body
-            table.table--cross(style='width:100%')
-                tr
-                    th Name
-                    th Email 
-                    th Action  
-                tr
-                    td DOTW 
-                    td dotw@goquo.com
-                    td 
-                        a.btn.btn--transparent(href="./edit-user.html")
-                            span.fa.fa-save
-                            span &nbsp Edit
-                tr
-                    td DOTW 
-                    td dotw@goquo.com
-                    td 
-                        a.btn.btn--transparent(href="./edit-user.html")
-                            span.fa.fa-save
-                            span &nbsp Edit
+            table.table--cross
+                thead
+                    tr
+                        th Name
+                        th Email 
+                        th Action  
+                tbody
+                    tr
+                        td DOTW 
+                        td dotw@goquo.com
+                        td 
+                            a.btn.btn--transparent(href="./edit-user.html")
+                                span.fa.fa-save
+                                span.span-fa-text Edit
+                    tr
+                        td DOTW 
+                        td dotw@goquo.com
+                        td 
+                            a.btn.btn--transparent(href="./edit-user.html")
+                                span.fa.fa-save
+                                span.span-fa-text Edit
             .table-info
                 p Showing 2 of 2 entries

@@ -6,49 +6,51 @@ block content
             h4 Email: admin@goquo.com
             button.btn.btn--sm.btn--info 
                 span.fa.fa-plus
-                span &nbsp Add Supplier
+                span.span-fa-text Add Supplier
             button.btn.btn--sm.btn--info-2.btn__loading
                 span.fa.fa-cog
-                span &nbsp Set Markup
+                span.span-fa-text Set Markup
             .container--info
                 .row
                     label Please 
         .body
-            table.table--cross(style='width:100%')
-                tr
-                    th Supplier Code 
-                    th Supplier Name 
-                    th Markup 
-                    th Status 
-                tr
-                    td DOTW 
-                    td DOTW v3
-                    td 
-                        button.btn.btn--info-2
-                            span.fa.fa-save
-                            span &nbsp Edit &nbsp
-                            span.fa.fa-chevron-down
-                    td 
-                        .onoffswitch
-                            input#sw1.onoffswitch-checkbox(type='checkbox', name='sw1', checked="")   
-                            label.onoffswitch-label(for='sw1')
-                                span.onoffswitch-inner      
-                                span.onoffswitch-switch
-                tr
-                    td DOTW 
-                    td DOTW v3
-                    td 
-                        button.btn.btn--info-2.btn__loading
-                            span.fa.fa-save
-                            span &nbsp Edit &nbsp
-                            span.fa.fa-chevron-down
-                            
-                    td 
-                        .onoffswitch
-                            input#sw2.onoffswitch-checkbox(type='checkbox', name='sw2')   
-                            label.onoffswitch-label(for='sw2')
-                                span.onoffswitch-inner      
-                                span.onoffswitch-switch
+            table.table--cross
+                thead
+                    tr
+                        th Supplier Code 
+                        th Supplier Name 
+                        th Markup 
+                        th Status 
+                tbody
+                    tr
+                        td DOTW 
+                        td DOTW v3
+                        td 
+                            button.btn.btn--info-2
+                                span.fa.fa-save
+                                span.span-fa-text Edit
+                                span.fa.fa-chevron-down.span-fa-text
+                        td 
+                            .onoffswitch
+                                input#sw1.onoffswitch-checkbox(type='checkbox', name='sw1', checked="")   
+                                label.onoffswitch-label(for='sw1')
+                                    span.onoffswitch-inner      
+                                    span.onoffswitch-switch
+                    tr
+                        td DOTW 
+                        td DOTW v3
+                        td 
+                            button.btn.btn--info-2.btn__loading
+                                span.fa.fa-save
+                                span.span-fa-text Edit
+                                span.fa.fa-chevron-down
+                                
+                        td 
+                            .onoffswitch
+                                input#sw2.onoffswitch-checkbox(type='checkbox', name='sw2')   
+                                label.onoffswitch-label(for='sw2')
+                                    span.onoffswitch-inner      
+                                    span.onoffswitch-switch
             .table-info
                 p Showing 2 of 2 entries
 
