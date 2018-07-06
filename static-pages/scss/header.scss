@@ -1,7 +1,7 @@
 // Local vars
 $header_height: 60px;
 $header_font_size: 16px;
-$header_font_size_mobile: 11px;
+$header_font_size_mobile: 14px;
 $header_line_height: 1.4;
 
 .nav {
@@ -32,4 +32,51 @@ $header_line_height: 1.4;
 .nav--user-menu {
   float: right;
   cursor: pointer;
+  font-size: 13px;
+  position: relative;
+
+  .nav--user-menu__dropdown {
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    background-color: #000;
+    padding: 12px;
+    color: #fff;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, .12);
+
+    &::before {
+      top: -16px;
+      right: 9px;
+      left: auto;
+      border: 8px solid transparent;
+      border-bottom-color: rgba(27, 31, 35, 0.15);
+      position: absolute;
+      display: inline-block;
+      content: "";
+    }
+    &::after {
+      top: -14px;
+      right: 10px;
+      left: auto;
+      border: 7px solid transparent;
+      border-bottom-color: #000;
+      position: absolute;
+      display: inline-block;
+      content: "";
+    }
+  }
+
+  input {
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+
+    &:focus {
+      & ~ .nav--user-menu__dropdown {
+        display: block;
+      }
+    }
+  }
 }

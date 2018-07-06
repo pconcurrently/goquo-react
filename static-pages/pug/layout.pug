@@ -15,10 +15,10 @@ html(lang='en')
       include partials/header
       include partials/sidebar
 
-      .content-container
+      .content-container.xloading
         .block-content-wrapper
           block content
-        .loader-container
+        .loader-container.xloading
           +loader()
 
     script(src='../js/lib/Chart.min.js')
