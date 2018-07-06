@@ -11,11 +11,15 @@ html(lang='en')
 
   body
     .wrapper
+      include mixins/loader
       include partials/header
       include partials/sidebar
 
-      .content-container
-        block content
+      .content-container.xloading
+        .block-content-wrapper
+          block content
+        .loader-container.xloading
+          +loader()
 
     script(src='../js/lib/jquery-3.1.1.min.js')
     script(src='../js/main.js')

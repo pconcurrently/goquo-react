@@ -77,3 +77,12 @@
     color: #fff;
   }
 }
+.btn__loading {
+  background-image: url(../images/pacman-loader.svg);
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  span {
+    opacity: 0;
+  }
+}

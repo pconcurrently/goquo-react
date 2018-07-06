@@ -1,5 +1,4 @@
 extends layout
-
 block content
     .container
         .header
@@ -7,10 +6,10 @@ block content
             h4 Email: admin@goquo.com
             button.btn.btn--sm.btn--info 
                 span.fa.fa-plus
-                | &nbsp Add Supplier
-            button.btn.btn--sm.btn--info-2 
+                span &nbsp Add Supplier
+            button.btn.btn--sm.btn--info-2.btn__loading
                 span.fa.fa-cog
-                | &nbsp Set Markup
+                span &nbsp Set Markup
             .container--info
                 .row
                     label Please 
@@ -39,10 +38,11 @@ block content
                     td DOTW 
                     td DOTW v3
                     td 
-                        button.btn.btn--info-2
+                        button.btn.btn--info-2.btn__loading
                             span.fa.fa-save
                             span &nbsp Edit &nbsp
                             span.fa.fa-chevron-down
+                            
                     td 
                         .onoffswitch
                             input#sw2.onoffswitch-checkbox(type='checkbox', name='sw2')   

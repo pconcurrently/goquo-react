@@ -1,4 +1,8 @@
+.container {
+    padding: 15px;
+}
 .content-container {
+    display: block;
     margin-left: $sidebar_max_width;
     transition: margin .3s ease-in-out;
     min-height: calc(100vh - #{$header_height});
@@ -7,7 +11,21 @@
     &.extend {
         margin-left: $sidebar_collapsed_width;
     }
+    .block-content-wrapper {
+        display: block;
+    }
 }
-.container {
-    padding: 15px;
+.content-container.xloading {
+    @include display-grid; // _misc.scss
+    align-items: center;
+    .block-content-wrapper {
+        display: none;
+    }
+}
+.loader-container.xloading {
+    display: block;
+    text-align: center;
+}
+.loader-container {
+    display: none;
 }
