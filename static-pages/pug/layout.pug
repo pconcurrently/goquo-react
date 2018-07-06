@@ -12,6 +12,7 @@ html(lang='en')
   body
     .wrapper
       include mixins/loader
+      include mixins/loader-svg
       include partials/header
       include partials/sidebar
 
@@ -19,7 +20,7 @@ html(lang='en')
         .block-content-wrapper
           block content
         .loader-container.xloading
-          +loader()
+          +loaderSvg()
 
     script(src='../js/lib/Chart.min.js')
     script(src='../js/lib/jquery-3.1.1.min.js')

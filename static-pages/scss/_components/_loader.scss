@@ -63,3 +63,15 @@ $loader_color: #09eeea;
     transform: rotate(1800deg);
   }
 }
+.loader-container {
+  text-align: center;
+}
+.svg-loader {
+  background: url('../images/cat-loader.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
