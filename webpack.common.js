@@ -2,10 +2,14 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
-  entry: './src/index.jsx',
+  node: {
+    fs: 'empty'
+  },
+  entry: ['babel-polyfill', './src/index.jsx'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -52,7 +56,10 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       { from: 'src/assets', to: 'assets' }
-    ])
+    ]), 
+    new DotenvPlugin({
+      path: './.env'
+    })
   ],
   devServer: {
     contentBase: "./dist",
