@@ -65,6 +65,9 @@ $header_line_height: 1.4;
       display: inline-block;
       content: "";
     }
+    &.open {
+      display: block;
+    }
   }
 
   input {
@@ -72,11 +75,5 @@ $header_line_height: 1.4;
     right: 0;
     opacity: 0;
     cursor: pointer;
-
-    &:focus {
-      & ~ .nav--user-menu__dropdown {
-        display: block;
-      }
-    }
   }
 }
