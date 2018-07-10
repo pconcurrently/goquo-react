@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 
 import store from "./rdx";
 import { getLoggedIn, isLoggedIn, logout } from "./rdx/user.rdx";
@@ -10,6 +10,7 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./components/Dashboard";
 import Suppliers from "./components/Suppliers";
 import Users from "./components/Users";
+import EditUser from "./components/Users/edit-user";
 import Login from "./components/Login";
 
 class App extends Component {
@@ -39,9 +40,13 @@ class App extends Component {
             <Header user={user} onLogout={this.onLogout} />
             <Sidebar />
             <Switch>
-              <Route path="/" exact component={Dashboard} />
+              <Route exact path="/" component={Dashboard} />
               <Route path="/suppliers" component={Suppliers} />
-              <Route path="/users" component={Users} />
+              <Switch>
+                <Route exact path="/users" component={Users} />
+                <Route path="/users/:id" component={EditUser} />
+              </Switch>
+              <Redirect to="/" />
             </Switch>
           </div>
         )}
@@ -54,5 +59,5 @@ const mapStateToProps = state => ({
     user: state.user.user,
     isLoggedIn: isLoggedIn(state)
 });
-export default App = connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));
 
