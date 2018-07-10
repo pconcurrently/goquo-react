@@ -17,3 +17,13 @@ export const getMonthly = async (month) => {
 
     return res;
 }
+export const getTotalBookings = async (by) => {
+    const res = await $get(`${book_svc}/total-booking/${by}`);
+
+    return res;
+}
+export const getLastBooking = async () => {
+    const res = await $get(`${book_svc}/last-booking`);
+
+    return res;
+}

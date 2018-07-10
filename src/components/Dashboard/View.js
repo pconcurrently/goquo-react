@@ -1,27 +1,76 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { Bar as BarChart } from 'react-chartjs-2';
+import 'chartjs-plugin-datalabels';
 import store from '../../rdx';
 import { getDashboard } from '../../rdx/booking.rdx';
 
 class Dashboard extends React.Component {
   constructor(state, props) {
     super(state, props);
+    this.state = {
+      currentLastBookingPage: 1
+    };
+
+    this.switchPage = this.switchPage.bind(this);
   }
 
   componentWillMount() {
     store.dispatch(getDashboard());
   }
 
+  switchPage(num) {
+    if (num > 0 && num <= Math.ceil(this.props.lastBooking.length / 5)) {
+      this.setState({
+        currentLastBookingPage: num
+      })
+    }
+  }
+
   render() {
-    const { apiPending, daily, weekly, monthly } = this.props;
+    const { apiPending, daily, weekly, monthly, userBooking, supplierBooking, lastBooking } = this.props;
+
+    const chartGlobalOptions = { 
+      responsive: true, 
+      maintainAspectRatio: false, 
+      height: 400, 
+      scales: {
+        xAxes: [{
+          ticks: {
+            autoSkip: false
+          }
+        }]
+      },
+      plugins: { 
+        datalabels: { 
+          display: true, 
+          color: 'black', 
+          anchor: 'top',
+          align: 'top',
+          font: {
+            size: 10
+          }
+        }
+      } 
+    };
 
     const now = moment();
     const today = now.format('ddd, DD MMM, YYYY');
-     const thisMonth = now.format('MMM, YYYY');
+    const thisMonth = now.format('MMM, YYYY');
     const weekMonday = moment(now.startOf('isoWeek')); // Avoid object reference (to weekSunday)
     const weekSunday = now.add(7, 'days').startOf('week');
     const thisWeek = weekMonday.format('ddd, DD') + ' - ' + weekSunday.format('ddd, DD, YYYY');
+
+    // Last booking
+    const numberOfPages = Math.ceil(lastBooking.length / 5);
+    let pageStart = (this.state.currentLastBookingPage - 1) * 5;
+    const currentLastBooking = lastBooking.slice(pageStart, pageStart + 5); 
+    const pageNumbers = [];
+    for (let i = 1; i <= numberOfPages; i++) {
+      pageNumbers.push(i);
+    }
+
     return (
       <div className={`${apiPending ? 'xloading' : ''} content-container`}>
         <div className="block-content-wrapper">
@@ -44,10 +93,10 @@ class Dashboard extends React.Component {
                 <div className="heading">Total Bookings</div><small>A bar chart for demonstrating bookings</small>
                 <div className="totalbookings__chart-container">
                   <div className="totalbookings__chart-container-1">
-                    <canvas id="chart-1" height="300"></canvas>
+                    <BarChart data={userBooking} options={chartGlobalOptions} height={400} />
                   </div>
                   <div className="totalbookings__chart-container-2">
-                    <canvas id="chart-2" height="300"></canvas>
+                    <BarChart data={supplierBooking} options={chartGlobalOptions} height={400} />
                   </div>
                 </div>
               </section>
@@ -62,21 +111,40 @@ class Dashboard extends React.Component {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>DOTW </td>
-                        <td>28 Jule 2017</td>
+                      {currentLastBooking.map(booking => (
+                        <tr key={booking.supplier_code}>
+                          <td>{booking.supplier_code}</td>
+                          <td>{booking.booking_date}</td>
                       </tr>
-                      <tr>
-                        <td>DOTW2</td>
-                        <td>26 Jule 2017</td>
-                      </tr>
+                      ))}
                     </tbody>
                   </table>
                   <div className="table-addons">
                     <div className="table-info">
-                      <p>Showing 2 of 6 entries</p>
+                      <p>Showing {currentLastBooking.length} of {lastBooking.length} entries</p>
                     </div>
-                    <div className="table-paging-indicators"><span className="prev inactive">Previous</span><span className="active">1</span><span>2</span><span>3</span><span className="next">Next</span></div>
+                    <div className="table-paging-indicators">
+                      <span 
+                        className={`prev ${this.state.currentLastBookingPage === 1 ? 'inactive' : ''}`}
+                        onClick={() => this.switchPage(this.state.currentLastBookingPage - 1)}
+                      >
+                        Previous
+                      </span>
+                      {pageNumbers.map(num => (
+                        <span 
+                          className={`${num === this.state.currentLastBookingPage ? 'active' : ''}`}
+                          onClick={() => this.switchPage(num)}
+                          key={num}
+                        >
+                          {num}
+                        </span>
+                      ))}
+                      <span 
+                        className={`next ${this.state.currentLastBookingPage === numberOfPages ? 'inactive' : ''}`}
+                        onClick={() => this.switchPage(this.state.currentLastBookingPage + 1)}
+                      >
+                        Next
+                      </span></div>
                   </div>
                 </div>
               </section>
@@ -90,11 +158,15 @@ class Dashboard extends React.Component {
   }
 }
 
+
 const mapStateToProps = state => ({
   apiPending: state.booking.apiPending,
   daily: state.booking.daily,
   weekly: state.booking.weekly,
-  monthly: state.booking.monthly
+  monthly: state.booking.monthly,
+  userBooking: state.booking.userBooking,
+  supplierBooking: state.booking.supplierBooking,
+  lastBooking: state.booking.lastBooking
 })
 
 export default connect(mapStateToProps)(Dashboard);

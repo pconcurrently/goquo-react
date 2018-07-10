@@ -10,14 +10,23 @@ const initialState = {
     errorMessage: '',
     user: '',
     token: '',
-    loginPending: false
+    loginPending: false,
+    usersPagePending: true,
+    suppliersPagePending: true,
+    editUserPagePending: true,
+    userSuppliers: [],
 };
 
 /* TYPES */
 export const LOGIN = 'user/LOGIN';
-export const PENDING_LOGIN = 'user/PENDING_LOGIN';
 export const GET_LOGGED_IN = 'user/GET_LOGGED_IN';
 export const LOGOUT = 'user/LOGOUT';
+export const GET_USERS = 'user/GET_USERS';
+export const GET_SUPPLIERS = 'user/GET_SUPPLIERS';
+export const GET_USER_SUPPLIERS = 'user/GET_USER_SUPPLIERS';
+export const PENDING_LOGIN = 'user/PENDING_LOGIN';
+export const PENDING_USERS_PAGE = 'user/PENDING_LOGIN';
+export const PENDING_USER_EDIT_PAGE = 'user/PENDING_USER_EDIT_PAGE';
 
 
 /* ACTIONS */
@@ -71,6 +80,45 @@ export const getLoggedIn = () => {
     }
 }
 
+export const getUsersPage = () => {
+    return async dispatch => {
+        const res = await userApi.getUsers();
+
+        dispatch({
+            type: GET_USERS,
+            users: res.success ? res.users : []
+        })
+    }
+}
+
+export const getSuppliersPage = () => {
+    return async dispatch => {
+        const res = await userApi.getSuppliers();
+
+        dispatch({
+            type: GET_SUPPLIERS,
+            suppliers: res.success ? res.suppliers : []
+        })
+    }
+}
+
+export const getUserSuppliers = (id) => {
+    return async dispatch => {
+        const res = await userApi.getUserSuppliers(id);
+
+        dispatch({
+            type: GET_USER_SUPPLIERS,
+            userSuppliers: res.success ? res.suppliers : []
+        })
+    }
+}
+export const pendingUserSuppliersPage = () => {
+    return dispatch => {
+        dispatch({
+            type: PENDING_USER_EDIT_PAGE
+        })
+    }
+}
 
 /* SELECTORS */
 export const token = Cookie.get(C_TOKEN);
@@ -107,6 +155,29 @@ export const userReducer = (state = initialState, action) => {
                 user: action.user,
                 token: action.token
             };  
+        case GET_USERS: 
+            return {
+                ...state,
+                users: action.users,
+                usersPagePending: false
+            };
+        case GET_SUPPLIERS:
+            return {
+                ...state,
+                suppliers: action.suppliers,
+                suppliersPagePending: false
+            };
+        case GET_USER_SUPPLIERS:
+            return {
+                ...state,
+                editUserPagePending: false,
+                userSuppliers: action.userSuppliers
+            };
+        case PENDING_USER_EDIT_PAGE:
+            return {
+                ...state,
+                editUserPagePending: true
+            };
         default:
             return state;
     }
