@@ -1,3 +1,4 @@
 node_modules
 static-pages/dist
 .env
+dist
