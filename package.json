@@ -5,6 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "copy-assets": "node copyStaticAssets.js",
+    "copy-assets-to-app": "node copyAssetsToApp.js",
     "watch": "webpack --watch",
     "build": "webpack --config webpack.prod.js",
     "build-static": "npm run build-html && npm run build-css && npm run copy-assets",
@@ -48,13 +49,14 @@
     "webpack-merge": "^4.1.1"
   },
   "dependencies": {
-    "chart.js": "^1.1.1",
+    "chart.js": "^2.7.2",
+    "chartjs-plugin-datalabels": "^0.3.0",
     "es6-promise": "^4.2.4",
     "isomorphic-fetch": "^2.2.1",
     "js-cookie": "^2.2.0",
     "moment": "^2.22.2",
     "pug-cli": "^1.0.0-alpha6",
-    "react-chartjs": "^1.2.0",
+    "react-chartjs-2": "^2.7.2",
     "sass": "^1.9.0"
   }
 }
