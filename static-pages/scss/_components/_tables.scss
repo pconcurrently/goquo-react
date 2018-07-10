@@ -26,6 +26,7 @@
     margin-top: 6px;
     text-align: right;
     > span {
+        @extend .none-select;
         display: inline-block;
         width: 30px;
         height: 30px;

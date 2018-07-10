@@ -3412,6 +3412,13 @@ ul li {
   /* NEW, Spec - Opera 12.1, Firefox 20+ */
 }
 
+.none-select, .table-paging-indicators > span {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .login-container {
   width: 100vw;
   height: 100vh;
@@ -3648,6 +3655,7 @@ section.dashboard__section > .section-container {
 }
 .total-bookings .totalbookings__chart-container > div {
   width: 100%;
+  min-height: 400px;
   background-color: #fff;
   padding: 12px;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.12);
@@ -3852,6 +3860,7 @@ section.dashboard__section > .section-container {
 
 .container {
   padding: 15px;
+  padding-bottom: 40px;
 }
 
 .content-container {
