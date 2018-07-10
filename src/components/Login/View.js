@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import store from '../../rdx';
-import { login } from '../../rdx/user.rdx';
+import { login, pendingLogin } from '../../rdx/user.rdx';
 
 class Login extends React.Component {
     constructor(state, props) {
@@ -21,6 +21,9 @@ class Login extends React.Component {
 
     handleLogin(e) {
         e.preventDefault();
+
+        // Set loginPending to true
+        store.dispatch(pendingLogin());
  
         const email_regex = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/;
         const emailValid = this.state.username.length && email_regex.test(this.state.username.toLowerCase());
@@ -55,7 +58,7 @@ class Login extends React.Component {
     }
 
     render() {
-        const { error } = this.props;
+        const { error, loginPending } = this.props;
         
         return (
             <div className="login-container">
@@ -96,7 +99,7 @@ class Login extends React.Component {
                             <p className="form--error-message">{this.state.passwordError}</p>
                         </div>
                         <div className="form--block"><a className="form--link" href="#">Reset your password</a></div>   
-                        <input className="btn btn--primary btn--block" type="submit" value="Sign In" />
+                        <button className={`${loginPending ? 'btn__loading' : ''} btn btn--primary btn--block`} type="submit"><span>Sign In</span></button>
                     </form>
                 </div>
             </div>
@@ -105,7 +108,8 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    error: state.user.errorMessage
+    error: state.user.errorMessage,
+    loginPending: state.user.loginPending
 });
 
 export default connect(mapStateToProps)(Login);

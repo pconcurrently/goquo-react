@@ -9,11 +9,13 @@ const initialState = {
     isLoggedIn: false,
     errorMessage: '',
     user: '',
-    token: ''
+    token: '',
+    loginPending: false
 };
 
 /* TYPES */
 export const LOGIN = 'user/LOGIN';
+export const PENDING_LOGIN = 'user/PENDING_LOGIN';
 export const GET_LOGGED_IN = 'user/GET_LOGGED_IN';
 export const LOGOUT = 'user/LOGOUT';
 
@@ -33,6 +35,14 @@ export const login = (username, password) => {
             errorMessage: res.message,
             username,
             token: res.success ? res.data.auth_token : ''
+        })
+    }
+}
+
+export const pendingLogin = () => {
+    return async dispatch => {
+        dispatch({
+            type: PENDING_LOGIN
         })
     }
 }
@@ -76,13 +86,20 @@ export const userReducer = (state = initialState, action) => {
                 isLoggedIn: action.isLoggedIn,
                 errorMessage: action.errorMessage,
                 user: action.username,
-                token: action.token
+                token: action.token,
+                loginPending: false
+            };
+        case PENDING_LOGIN:
+            return {
+                ...state,
+                loginPending: true
             };
         case LOGOUT:
             return {
                 ...state,
                 user: '',
-                token: ''
+                token: '',
+                isLoggedIn: false
             };
         case GET_LOGGED_IN:
             return {
