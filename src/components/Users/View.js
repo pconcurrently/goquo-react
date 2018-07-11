@@ -14,10 +14,10 @@ class Users extends React.Component {
     }
 
     render() {
-        const { users, usersPagePending, match } = this.props;
+        const { users, usersPagePending, match, collapsed } = this.props;
 
         return (
-            <div className={`content-container ${usersPagePending ? 'xloading' : ''}`}>
+            <div className={`content-container ${usersPagePending ? 'xloading' : ''} ${collapsed ? 'extend' : ''}`}>
                 <div className="block-content-wrapper">
                     <div className="container"> 
                         <div className="header">
@@ -43,7 +43,7 @@ class Users extends React.Component {
                                                     className="btn btn--transparent" 
                                                     to={`${match.path}/${u.id}?name=${u.name}&email=${u.email}`}
                                                 >
-                                                    <span className="fa fa-save"></span>
+                                                    <span className="fa fa-edit"></span>
                                                     <span className="span-fa-text">Edit</span>
                                                 </Link>
                                             </td>
@@ -67,7 +67,8 @@ class Users extends React.Component {
 
 const mapStateToProps = state => ({
     users: state.user.users,
-    usersPagePending: state.user.usersPagePending
+    usersPagePending: state.user.usersPagePending,
+    collapsed: state.utils.sidebarCollapsed
 })
 
 export default withRouter(connect(mapStateToProps)(Users));

@@ -4,12 +4,13 @@ block content
         .header
             h4 User: admin
             h4 Email: admin@goquo.com
-            button.btn.btn--sm.btn--info 
-                span.fa.fa-plus
-                span.span-fa-text Add Supplier
-            button.btn.btn--sm.btn--info-2.btn__loading
-                span.fa.fa-cog
-                span.span-fa-text Set Markup
+            .action-button-containers
+                button.btn.btn--sm.btn--info 
+                    span.fa.fa-plus
+                    span.span-fa-text Add Supplier
+                button.btn.btn--sm.btn--info-2.btn__loading
+                    span.fa.fa-cog
+                    span.span-fa-text Set Markup
             .container--info
                 label Please choose supplier to add to current user
                 input.input
@@ -20,7 +21,7 @@ block content
                     button.btn.btn--danger
                         span.fa.fa-close
                         span.span-fa-text Cancel
-        .body
+        .body.body__table
             table.table--cross
                 thead
                     tr
@@ -32,11 +33,18 @@ block content
                     tr
                         td DOTW 
                         td DOTW v3
-                        td 
+                        td.markup-popover__container
                             button.btn.btn--info-2
-                                span.fa.fa-save
+                                span.fa.fa-edit
                                 span.span-fa-text Edit
                                 span.fa.fa-chevron-down.span-fa-text
+                            .markup-popover.open
+                                h4 Markup percentage
+                                input.input
+                                a.btn.btn--info
+                                    span.fa.fa-save
+                                    span.span-fa-text Save
+                            .markup-popover__overlay
                         td 
                             .onoffswitch
                                 input#sw1.onoffswitch-checkbox(type='checkbox', name='sw1', checked="")   
@@ -48,7 +56,7 @@ block content
                         td DOTW v3
                         td 
                             button.btn.btn--info-2.btn__loading
-                                span.fa.fa-save
+                                span.fa.fa-edit
                                 span.span-fa-text Edit
                                 span.fa.fa-chevron-down
                                 

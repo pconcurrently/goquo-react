@@ -29,6 +29,17 @@ $header_line_height: 1.4;
     font-family: Roboto;
   }
 }
+.nav--menu__title {
+  margin-left: 12px;
+  font-family: Roboto;
+  color: #fff;
+  text-decoration: none;
+
+  &:hover, &:active, &:focus {
+    color: #ddd;
+    text-decoration: none;
+  }
+}
 .nav--user-menu {
   float: right;
   cursor: pointer;

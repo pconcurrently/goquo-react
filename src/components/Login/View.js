@@ -21,9 +21,6 @@ class Login extends React.Component {
 
     handleLogin(e) {
         e.preventDefault();
-
-        // Set loginPending to true
-        store.dispatch(pendingLogin());
  
         const email_regex = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/;
         const emailValid = this.state.username.length && email_regex.test(this.state.username.toLowerCase());
@@ -41,6 +38,9 @@ class Login extends React.Component {
         }
 
         if (emailValid && passwordValid) {
+            // Set loginPending to true
+            store.dispatch(pendingLogin());
+
             store.dispatch(login(this.state.username, this.state.password));
         } 
         return;

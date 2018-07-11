@@ -15,6 +15,12 @@ const initialState = {
     suppliersPagePending: true,
     editUserPagePending: true,
     userSuppliers: [],
+    editUserPending: {
+        setMarkup: false,
+        addSupplier: false,
+        setSingleMarkup: false
+    },
+    supplierIds: []
 };
 
 /* TYPES */
@@ -27,6 +33,12 @@ export const GET_USER_SUPPLIERS = 'user/GET_USER_SUPPLIERS';
 export const PENDING_LOGIN = 'user/PENDING_LOGIN';
 export const PENDING_USERS_PAGE = 'user/PENDING_LOGIN';
 export const PENDING_USER_EDIT_PAGE = 'user/PENDING_USER_EDIT_PAGE';
+export const PENDING_EDIT_USER_BUTTON = 'user/PENDING_EDIT_USER_BUTTON';
+export const SET_MARKUP = 'user/SET_MARKUP';
+export const SWITCH_SUPPLIER_STATUS = 'user/SWITCH_SUPPLIER_STATUS';
+export const SWITCH_USER_SUPPLIER_STATUS = 'user/SWITCH_USER_SUPPLIER_STATUS';
+export const ADD_USER_SUPPLIER = 'user/ADD_USER_SUPPLIER';
+export const SET_SINGLE_MARKUP = 'user/SET_SINGLE_MARKUP';
 
 
 /* ACTIONS */
@@ -90,7 +102,6 @@ export const getUsersPage = () => {
         })
     }
 }
-
 export const getSuppliersPage = () => {
     return async dispatch => {
         const res = await userApi.getSuppliers();
@@ -105,18 +116,96 @@ export const getSuppliersPage = () => {
 export const getUserSuppliers = (id) => {
     return async dispatch => {
         const res = await userApi.getUserSuppliers(id);
-
         dispatch({
             type: GET_USER_SUPPLIERS,
             userSuppliers: res.success ? res.suppliers : []
-        })
+        });
     }
 }
+
 export const pendingUserSuppliersPage = () => {
-    return dispatch => {
+    return async dispatch => {
         dispatch({
             type: PENDING_USER_EDIT_PAGE
         })
+    }
+}
+
+export const pendingEditUserButton = button => {
+    return async dispatch => {
+        dispatch({
+            type: PENDING_EDIT_USER_BUTTON,
+            button
+        })
+    }
+}
+
+export const submitMarkup = (markup, email) => {
+    return async dispatch => {
+        const res = await userApi.setMarkup(markup, email);
+
+        if (res.success) {
+            dispatch({
+                type: SET_MARKUP,
+                markup
+            })
+        }
+    }
+}
+
+export const switchSupplierStatus = (supplier_code, active) => {
+    return async dispatch => {
+        const res = await userApi.supplierConfig(supplier_code, active);
+
+        if (res.success) {
+            dispatch({
+                type: SWITCH_SUPPLIER_STATUS,
+                code: supplier_code,
+                status: active
+            })
+        }
+    }
+}
+export const switchUserSupplierStatus = (supplier_code, active, user_email) => {
+    return async dispatch => {
+        const res = await userApi.supplierConfig(supplier_code, active, user_email);
+
+        if (res.success) {
+            dispatch({
+                type: SWITCH_USER_SUPPLIER_STATUS,
+                code: supplier_code,
+                status: active
+            })
+        }
+    }
+}
+
+export const addSupplierToUser = (supplier_id, user_id) => {
+    return async dispatch => {
+        const res = await userApi.addSupplier(supplier_id, user_id);
+
+        if (res.success) {
+            const newSuppliers = await userApi.getUserSuppliers(user_id);
+            dispatch({
+                type: ADD_USER_SUPPLIER,
+                userSuppliers: newSuppliers.success ? newSuppliers.suppliers : [],
+                supplier_id
+            })
+        }
+    }
+}
+
+export const setSingleMarkup = (supplier_code, markup, user_email) => {
+    return async dispatch => {
+        const res = await userApi.setSingleMarkup(supplier_code, markup, user_email);
+
+        if (res.success) {
+            dispatch({
+                type: SET_SINGLE_MARKUP,
+                supplier_code,
+                markup
+            })
+        }
     }
 }
 
@@ -168,15 +257,84 @@ export const userReducer = (state = initialState, action) => {
                 suppliersPagePending: false
             };
         case GET_USER_SUPPLIERS:
+            const supplierIds = action.userSuppliers.map(sup => sup.id)
             return {
                 ...state,
                 editUserPagePending: false,
-                userSuppliers: action.userSuppliers
+                userSuppliers: action.userSuppliers,
+                supplierIds
+            };
+        case ADD_USER_SUPPLIER:
+            const newSupplierIds = state.supplierIds;
+            newSupplierIds.push(parseInt(action.supplier_id));
+            return {
+                ...state,
+                userSuppliers: action.userSuppliers,
+                editUserPending: {
+                    addSupplier: false
+                },
+                supplierIds: newSupplierIds
             };
         case PENDING_USER_EDIT_PAGE:
             return {
                 ...state,
                 editUserPagePending: true
+            };
+        case PENDING_EDIT_USER_BUTTON:
+            return {
+                ...state,
+                editUserPending: {
+                    [action.button]: true
+                }
+            };
+        case SET_MARKUP:
+            const userSuppliers = state.userSuppliers.map(sup => {
+                sup.markup_percent = action.markup;
+
+                return sup;
+            });
+            const editUserPending = state.editUserPending;
+            editUserPending.setMarkup = false;
+            return {
+                ...state,
+                userSuppliers,
+                editUserPending
+            };
+        case SET_SINGLE_MARKUP:
+            const singleUserSuppliers = state.userSuppliers.map(sup => {
+                if (sup.code === action.supplier_code) {
+                    sup.markup_percent = action.markup;
+                }
+                return sup;
+            });
+            const editUserPendingClone = state.editUserPending;
+            editUserPendingClone.setSingleMarkup = false;
+            return {
+                ...state,
+                userSuppliers: singleUserSuppliers,
+                editUserPending: editUserPendingClone
+            };
+        case SWITCH_SUPPLIER_STATUS:
+            const suppliers = state.suppliers.map(sup => {
+                if (sup.code === action.code) {
+                    sup.del_flag = action.status ? 0 : 1;
+                }
+                return sup;
+            })
+            return {
+                ...state,
+                suppliers
+            };
+        case SWITCH_USER_SUPPLIER_STATUS:
+            const userSuppliers_2 = state.userSuppliers.map(sup => {
+                if (sup.code === action.code) {
+                    sup.inactive = !action.status;
+                }
+                return sup;
+            })
+            return {
+                ...state,
+                userSuppliers: userSuppliers_2
             };
         default:
             return state;

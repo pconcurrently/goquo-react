@@ -50,6 +50,10 @@ $sidebar_collapsed_width: 50px;
         .sidebar__item__link {
             color: #fff;
             text-decoration: none;
+
+            &:hover, &:active, &:focus {
+                color: #ddd;
+            }
         }
         .sidebar__item__text {
             margin-left: 6px; 

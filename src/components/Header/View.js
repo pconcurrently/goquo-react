@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+import store from '../../rdx';
+import { collapseSidebar } from '../../rdx/utils.rdx';
 
 let isLoggedOut = false;
 
@@ -12,6 +15,7 @@ class Header extends React.Component {
         this.onFocus = this.onFocus.bind(this);
         this.onBlur = this.onBlur.bind(this);
         this.onLogout = this.onLogout.bind(this);
+        this.collapsedSidebar = this.collapsedSidebar.bind(this);
     }
 
     onFocus() {
@@ -32,6 +36,9 @@ class Header extends React.Component {
         isLoggedOut = true;
         this.props.onLogout();
     }
+    collapsedSidebar() {
+        store.dispatch(collapseSidebar());
+    }
 
     render() {
         const { user } = this.props;
@@ -39,9 +46,10 @@ class Header extends React.Component {
         return (
             <header>
                 <nav className="nav nav--primary">
-                    <span className="fa fa-bars nav--menu" data-toggle="sidebar" data-toggle-target="#sidebar">
-                        <span className="nav--menu__title">GoQuo API System</span>
-                    </span>
+                    <span className="fa fa-bars nav--menu" onClick={this.collapsedSidebar}></span>
+                    <Link to='/' className="nav--menu__title span-fa-text">
+                        <span>GoQuo API System</span>
+                    </Link>
                     <span className="nav--user-menu" >{user}
                         <input onFocusCapture={this.onFocus} onBlur={this.onBlur} />
                         <span className="span-fa-text fa fa-angle-down">

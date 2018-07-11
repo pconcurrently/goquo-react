@@ -29,7 +29,7 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { apiPending, daily, weekly, monthly, userBooking, supplierBooking, lastBooking } = this.props;
+    const { apiPending, daily, weekly, monthly, userBooking, supplierBooking, lastBooking, collapsed } = this.props;
 
     const chartGlobalOptions = { 
       responsive: true, 
@@ -72,7 +72,7 @@ class Dashboard extends React.Component {
     }
 
     return (
-      <div className={`${apiPending ? 'xloading' : ''} content-container`}>
+      <div className={`${apiPending ? 'xloading' : ''} ${collapsed ? 'extend' : ''} content-container`}>
         <div className="block-content-wrapper">
             <div className="container">
               <section className="dashboard__section overall-stats">
@@ -166,7 +166,8 @@ const mapStateToProps = state => ({
   monthly: state.booking.monthly,
   userBooking: state.booking.userBooking,
   supplierBooking: state.booking.supplierBooking,
-  lastBooking: state.booking.lastBooking
+  lastBooking: state.booking.lastBooking,
+  collapsed: state.utils.sidebarCollapsed
 })
 
 export default connect(mapStateToProps)(Dashboard);

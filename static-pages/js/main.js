@@ -20,5 +20,5 @@ $(document).ready(function () {
 
     setTimeout(function() {
         $('.xloading').removeClass('xloading');
-    }, 4000)
+    }, 2000)
 })
