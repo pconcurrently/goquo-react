@@ -4013,6 +4013,7 @@ select.suppliers-select {
   text-align: left;
   border-collapse: collapse;
   width: 100%;
+  table-layout: fixed;
 }
 .table--cross th {
   background-color: #dee2e6;

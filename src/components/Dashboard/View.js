@@ -29,7 +29,22 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { apiPending, daily, weekly, monthly, userBooking, supplierBooking, lastBooking, collapsed } = this.props;
+    const {
+      apiPending,
+      daily,
+      weekly,
+      monthly,
+      userBooking,
+      supplierBooking,
+      lastBooking,
+      collapsed,
+      dailySupplier,
+      weeklySupplier,
+      monthlySupplier,
+      dailyUser,
+      weeklyUser,
+      monthlyUser,
+    } = this.props;
 
     const chartGlobalOptions = { 
       responsive: true, 
@@ -38,7 +53,8 @@ class Dashboard extends React.Component {
       scales: {
         xAxes: [{
           ticks: {
-            autoSkip: false
+            autoSkip: false,
+            minRotation: 40
           }
         }]
       },
@@ -148,6 +164,39 @@ class Dashboard extends React.Component {
                   </div>
                 </div>
               </section>
+              <section className="dashboard__section total-bookings">
+                <div className="heading">Today Bookings</div><small>{today}</small>
+                <div className="totalbookings__chart-container">
+                  <div className="totalbookings__chart-container-1">
+                    <BarChart data={dailySupplier} options={chartGlobalOptions} height={400} />
+                  </div>
+                  <div className="totalbookings__chart-container-2">
+                    <BarChart data={dailyUser} options={chartGlobalOptions} height={400} />
+                  </div>
+                </div>
+              </section>
+              <section className="dashboard__section total-bookings">
+                <div className="heading">This Week Bookings</div><small>{thisWeek}</small>
+                <div className="totalbookings__chart-container">
+                  <div className="totalbookings__chart-container-1">
+                    <BarChart data={weeklySupplier} options={chartGlobalOptions} height={400} />
+                  </div>
+                  <div className="totalbookings__chart-container-2">
+                    <BarChart data={weeklyUser} options={chartGlobalOptions} height={400} />
+                  </div>
+                </div>
+              </section>
+              <section className="dashboard__section total-bookings">
+                <div className="heading">This Month Bookings</div><small>{thisMonth}</small>
+                <div className="totalbookings__chart-container">
+                  <div className="totalbookings__chart-container-1">
+                    <BarChart data={monthlySupplier} options={chartGlobalOptions} height={400} />
+                  </div>
+                  <div className="totalbookings__chart-container-2">
+                    <BarChart data={monthlyUser} options={chartGlobalOptions} height={400} />
+                  </div>
+                </div>
+              </section>
           </div>
         </div>
         <div className={`loader-container ${apiPending ? 'xloading' : ''}`}>
@@ -164,6 +213,12 @@ const mapStateToProps = state => ({
   daily: state.booking.daily,
   weekly: state.booking.weekly,
   monthly: state.booking.monthly,
+  dailyUser: state.booking.dailyUser,
+  weeklyUser: state.booking.weeklyUser,
+  monthlyUser: state.booking.monthlyUser,
+  dailySupplier: state.booking.dailySupplier,
+  weeklySupplier: state.booking.weeklySupplier,
+  monthlySupplier: state.booking.monthlySupplier,
   userBooking: state.booking.userBooking,
   supplierBooking: state.booking.supplierBooking,
   lastBooking: state.booking.lastBooking,

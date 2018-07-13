@@ -2,18 +2,21 @@ import { $get } from './api';
 
 const book_svc = process.env.BOOK_SVC;
 
-export const getDaily = async (date) => {
-    const res = await $get(`${book_svc}/booking/daily?type=user&date=${date}`);
+export const getDaily = async (date, isSupplier) => {
+    const uri = isSupplier ? `${book_svc}/booking/daily?type=supplier&date=${date}` : `${book_svc}/booking/daily?type=user&date=${date}`;
+    const res = await $get(uri);
 
     return res;
 }
-export const getWeekly = async (week) => {
-    const res = await $get(`${book_svc}/booking/weekly?type=user&week=${week}`);
+export const getWeekly = async (week, isSupplier) => {
+    const uri = isSupplier ? `${book_svc}/booking/weekly?type=supplier&week=${week}` : `${book_svc}/booking/weekly?type=user&week=${week}`;
+    const res = await $get(uri);
 
     return res;
 }
-export const getMonthly = async (month) => {
-    const res = await $get(`${book_svc}/booking/monthly?type=user&month=${month}`);
+export const getMonthly = async (month, isSupplier) => {
+    const uri = isSupplier ? `${book_svc}/booking/monthly?type=supplier&month=${month}` : `${book_svc}/booking/monthly?type=user&month=${month}`;
+    const res = await $get(uri);
 
     return res;
 }
